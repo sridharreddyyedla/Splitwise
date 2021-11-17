@@ -18,6 +18,7 @@ import com.splitwise.services.console.commands.AddMemberCommand;
 import com.splitwise.services.console.commands.AuthenticatedCommandHandler;
 import com.splitwise.services.console.commands.ExitCommand;
 import com.splitwise.services.console.commands.LoginCommand;
+import com.splitwise.services.console.commands.LogoutCommand;
 import com.splitwise.services.console.commands.RegisterCommand;
 import com.splitwise.services.console.commands.UpdatePasswordCommand;
 import com.splitwise.services.console.handlers.CommandHandler;
@@ -28,6 +29,7 @@ import com.splitwise.services.console.handlers.ICommandHandler;
 public class Main implements CommandLineRunner{
 	final RegisterCommand registerCommand;
 	final LoginCommand loginCommand;
+	final LogoutCommand logoutCommand;
 	final UpdatePasswordCommand updatePasswordCommand;
 	final AddGroupCommand addGroupCommand;
 	final AddMemberCommand addMemberCommand;
@@ -37,12 +39,14 @@ public class Main implements CommandLineRunner{
 	public Main(AuthenticatedCommandHandler authenticatedCommandHandler,
 			RegisterCommand registerCommand,
 			LoginCommand loginCommand,
+			LogoutCommand logoutCommand,
 			UpdatePasswordCommand updatePasswordCommand,
 			AddGroupCommand addGroupCommand,
 			AddMemberCommand addMemberCommand,
 			ExitCommand exitCommand) {
 		this.registerCommand = registerCommand;
 		this.loginCommand = loginCommand;
+		this.logoutCommand = logoutCommand;
 		this.updatePasswordCommand = updatePasswordCommand;
 		this.addGroupCommand = addGroupCommand;
 		this.addMemberCommand = addMemberCommand;
@@ -60,6 +64,7 @@ public class Main implements CommandLineRunner{
 		ICommandHandler commandHandler = new CommandHandler();
 		commandHandler.register(registerCommand);
 		commandHandler.register(loginCommand);
+		commandHandler.register(logoutCommand);
 		commandHandler.register(exitCommand);
 		commandHandler.register(authenticatedCommandHandler);
 		authenticatedCommandHandler.register(updatePasswordCommand);

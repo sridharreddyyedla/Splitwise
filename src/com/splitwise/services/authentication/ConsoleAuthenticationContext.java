@@ -32,7 +32,7 @@ public class ConsoleAuthenticationContext implements AuthenticationContext {
 
 	@Override
 	public User getCurrentlyLoggedInUserOrElseThrow() {
-		return getCurrentlyLoggedInUser().orElseThrow( () -> new UserNotFoundException("User not found"));
+		return getCurrentlyLoggedInUser().orElseThrow( () -> new NotLoggedInException("User is not logged in!"));
 	}
 
 	@Override
